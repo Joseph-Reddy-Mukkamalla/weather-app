@@ -1,11 +1,9 @@
 import axios from "axios";
 
-export const fetchWeatherData = async (lat, lon, apiKey) => {
-  const res = await axios.get("https://api.openweathermap.org/data/2.5/onecall", {
+export const fetchWeatherData = async (city, apiKey) => {
+  const res = await axios.get("https://api.openweathermap.org/data/2.5/forecast", {
     params: {
-      lat,
-      lon,
-      exclude: "minutely,hourly,alerts",
+      q: city,
       units: "metric",
       appid: apiKey,
     },
