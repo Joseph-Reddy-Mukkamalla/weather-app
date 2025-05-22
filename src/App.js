@@ -43,17 +43,14 @@ export default function App() {
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      const match = suggestions.find(
-        (c) =>
-          `${c.name}, ${c.country}`.toLowerCase() === query.trim().toLowerCase()
-      );
-      if (match) {
-        onSelectCity(match);
+      if (suggestions.length > 0) {
+        onSelectCity(suggestions[0]); // select first suggestion automatically
       } else {
-        setError("Please select a city from the list.");
+        setError("Please type a valid city name.");
       }
     }
   };
+
 
   useEffect(() => {
     if (!selectedCity || !apiKey) return;
