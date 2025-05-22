@@ -40,16 +40,28 @@ export default function App() {
     setSuggestions([]);
   };
 
-  const onKeyDown = (e) => {
+  const onKeyDown = async (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       if (suggestions.length > 0) {
-        onSelectCity(suggestions[0]); // select first suggestion automatically
+        onSelectCity(suggestions[0]);
       } else {
-        setError("Please type a valid city name.");
+        try {
+          const res = await axios.get("https://api.openweathermap.org/geo/1.0/direct", {
+            params: { q: query, limit: 1, appid: apiKey },
+          });
+          if (res.data && res.data.length > 0) {
+            onSelectCity(res.data[0]);
+          } else {
+            setError("Please type a valid city name.");
+          }
+        } catch {
+          setError("Please type a valid city name.");
+        }
       }
     }
   };
+
 
 
   useEffect(() => {
