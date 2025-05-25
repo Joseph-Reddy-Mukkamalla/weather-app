@@ -178,7 +178,7 @@ export default function App() {
           margin-bottom: 10px;
         }
         input.apikey {
-          background: #2a2a2a;
+          background: #1e1e1e;
           border: 1px solid #555;
           margin-bottom: 20px;
         }
