@@ -11,7 +11,7 @@ export default function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState("");
   const [showApiKey, setShowApiKey] = useState(false);
-  const darkMode = true; // default to dark mode
+  const darkMode = true; // default to light mode
 
   const fetchCities = async (text) => {
     if (!text || !apiKey) return;
@@ -61,8 +61,6 @@ export default function App() {
       }
     }
   };
-
-
 
   useEffect(() => {
     if (!selectedCity || !apiKey) return;
@@ -182,6 +180,17 @@ export default function App() {
           border: 1px solid #555;
           margin-bottom: 20px;
         }
+        .light input[type=text], .light input[type=password] {
+          background: #ffffff;
+          color: #222;
+          border: 1px solid #444;
+        }
+        .light input.apikey {
+          background: #ffffff;
+          color: #222;
+          border: 1px solid #444;
+          margin-bottom: 20px;
+        }
         .eye-button {
           position: absolute;
           right: 10px;
@@ -195,6 +204,9 @@ export default function App() {
           width: 24px;
           height: 24px;
         }
+        .light .eye-button {
+          fill: #333;
+        }
         .suggestions {
           list-style: none;
           padding: 0;
@@ -205,7 +217,7 @@ export default function App() {
           overflow-y: auto;
           background: #222;
           border-radius: 0 0 4px 4px;
-          color: inherit;
+          color: #eee;
         }
         .suggestions li {
           padding: 10px;
@@ -214,6 +226,18 @@ export default function App() {
         }
         .suggestions li:hover {
           background: #333;
+        }
+        .light .suggestions {
+          background: #ffffff;
+          color: #222;
+          border: 1px solid #444;
+          border-top: none;
+        }
+        .light .suggestions li {
+          border-bottom: 1px solid #ccc;
+        }
+        .light .suggestions li:hover {
+          background: #e0e0e0;
         }
         .error {
           color: #e74c3c;
